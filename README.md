@@ -1,0 +1,1 @@
+# ThinkAndGetIt Automation Framework
