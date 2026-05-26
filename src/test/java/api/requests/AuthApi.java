@@ -10,11 +10,14 @@ public class AuthApi {
 
     public static Response login(Object payload) {
         return given()
+                .log().all()
                 .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
                 .body(payload)
                 .when()
                 .post(Endpoints.LOGIN)
                 .then()
+                .log().all()
                 .extract()
                 .response();
     }

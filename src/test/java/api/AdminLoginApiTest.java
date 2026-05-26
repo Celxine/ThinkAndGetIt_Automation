@@ -13,13 +13,15 @@ public class AdminLoginApiTest extends ApiBaseTest {
     @Test
     public void testAdminLoginSuccessfully() {
 
-        LoginRequest loginPayload = new LoginRequest("admin@thinkandgetit.com", "Admin@123456");
+        String rawJsonPayload = "{\n" +
+                "  \"email\": \"admin1@thinkandgetit.com\",\n" +
+                "  \"password\": \"Admin@123456\"\n" +
+                "}";
 
+        Response response = AuthApi.login(rawJsonPayload);
 
-        Response response = AuthApi.login(loginPayload);
         assertEquals(200, response.statusCode(), "Expected status code 200 OK");
-
-        String token = response.jsonPath().getString("data.token");
+        String token = response.jsonPath().getString("token");
         assertNotNull(token, "The authentication token should not be null");
 
         System.out.println("Login Test Passed! Retrieved Token: " + token);
