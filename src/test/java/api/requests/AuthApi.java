@@ -1,6 +1,6 @@
 package api.requests;
 
-import api.Endpoints;
+import ConfigProperties.Endpoints;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -15,7 +15,7 @@ public class AuthApi {
                 .accept(ContentType.JSON)
                 .body(payload)
                 .when()
-                .post(Endpoints.LOGIN)
+                .post(Endpoints.API_LOGIN)
                 .then()
                 .log().all()
                 .extract()

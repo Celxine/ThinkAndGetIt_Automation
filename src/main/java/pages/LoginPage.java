@@ -1,6 +1,8 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import ConfigProperties.Config;
+import ConfigProperties.Endpoints;
 
 public class LoginPage {
     private Page page;
@@ -8,11 +10,14 @@ public class LoginPage {
     private final String emailInput = "input[type='email']";
     private final String passwordInput = "input[type='password']";
     private final String loginButton = "button:has-text('Sign in')";
+
     public LoginPage(Page page) {
         this.page = page;
     }
+
     public void navigateTo() {
-        page.navigate("https://think-and-get-it-frontend.onrender.com/login");
+
+        page.navigate(Config.UI_BASE_URL + Endpoints.UI_LOGIN);
     }
 
     public void enterEmail(String email) {

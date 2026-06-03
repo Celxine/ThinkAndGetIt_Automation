@@ -1,42 +1,22 @@
 package ui.Authentication;
 
 import Flow.CartFlow;
-import com.microsoft.playwright.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import ConfigProperties.Config;
+import ui.UiBaseTest;
+
+import ConfigProperties.Endpoints;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class CheckoutTest {
-    static Playwright playwright;
-    static Browser browser;
-    Page page;
-
-    @BeforeAll
-    static void launchBrowser() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-    }
-
-    @AfterAll
-    static void closeBrowser() {
-        playwright.close();
-    }
-
-    @BeforeEach
-    void createContextAndPage() {
-        page = browser.newPage();
-    }
-
-    @AfterEach
-    void closeContext() {
-        page.close();
-    }
+public class CheckoutTest extends UiBaseTest {
 
     @Test
     public void testCartTotalCalculationBug() {
         CartFlow cartFlow = new CartFlow(page);
 
-        page.navigate("https://think-and-get-it-frontend.onrender.com/home");
+
+        page.navigate(Config.UI_BASE_URL + Endpoints.UI_HOME);
         page.waitForLoadState();
         page.waitForTimeout(3000);
 
